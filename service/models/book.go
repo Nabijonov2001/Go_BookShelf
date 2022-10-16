@@ -2,7 +2,7 @@ package models
 
 type BookData struct {
 	ID        uint   `gorm:"primaryKey" json:"id"`
-	Isbn      string `json:"isbn"`
+	Isbn      string `gorm:"unique" json:"isbn"`
 	Title     string `json:"title"`
 	Author    string `json:"author"`
 	Pages     uint   `json:"pages"`
@@ -10,7 +10,7 @@ type BookData struct {
 }
 
 type BookUpdateData struct {
-	Isbn      string `json:"isbn"`
+	Isbn      string `gorm:"unique" json:"isbn"`
 	Title     string `json:"title"`
 	Author    string `json:"author"`
 	Pages     uint   `json:"pages"`

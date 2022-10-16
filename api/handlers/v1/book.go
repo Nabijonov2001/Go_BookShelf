@@ -29,12 +29,12 @@ func (h *handlerV1) CreateBook(c *gin.Context) {
 	)
 
 	err := c.ShouldBindJSON(&payload)
-	if h.handleBadRequest(c, "failed to convert json to struct", err) {
+	if h.handleInternal(c, "failed to convert json to struct", err) {
 		return
 	}
 
 	res, err := h.service.Book().CreateBook(payload)
-	if h.handleBadRequest(c, "failed to create book", err) {
+	if h.handleInternal(c, "failed to create book", err) {
 		return
 	}
 
