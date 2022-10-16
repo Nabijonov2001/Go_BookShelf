@@ -25,8 +25,8 @@ func Auth(c *gin.Context) {
 
 	result := config.ConnectDB().Where("key=?", key).First(&user)
 	if result.Error != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-			"code":    "INTERNAL_SERVER_ERR",
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+			"code":    "UNAUTHORIZED",
 			"message": "access denied",
 		})
 		return
