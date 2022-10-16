@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	config.ConnectDB().AutoMigrate(&models.User{})
+	config.ConnectDB().AutoMigrate(&models.User{}, &models.Book{})
 }
