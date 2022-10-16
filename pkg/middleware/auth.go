@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/abdukhashimov/golang-hex-architecture/config"
@@ -33,6 +34,7 @@ func Auth(c *gin.Context) {
 	}
 
 	hash := helper.CreateHash(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + user.Secret)
+	fmt.Println(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + user.Secret)
 	if sign != hash {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"code":    "UNAUTHORIZED",
@@ -44,8 +46,4 @@ func Auth(c *gin.Context) {
 	c.Set("user", user)
 	c.Next()
 
-}
-
-func GetEnv(s string) {
-	panic("unimplemented")
 }
