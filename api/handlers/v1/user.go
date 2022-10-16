@@ -11,7 +11,7 @@ func (h *handlerV1) GetOneUser(c *gin.Context) {
 	var response ResponseCreated
 
 	user, _ := c.Get("user")
-	
+
 	response.IsOk = true
 	response.Data = user
 	response.Message = "ok"
@@ -30,8 +30,8 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 		return
 	}
 
-	res, err := h.service.User().CreateUser( payload)
-	if h.handleInternal(c, err.Error(), err) {
+	res, err := h.service.User().CreateUser(payload)
+	if h.handleInternal(c, "failed to signup user", err) {
 		return
 	}
 

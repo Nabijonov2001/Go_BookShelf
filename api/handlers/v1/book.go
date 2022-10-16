@@ -34,7 +34,7 @@ func (h *handlerV1) CreateBook(c *gin.Context) {
 	}
 
 	res, err := h.service.Book().CreateBook(payload)
-	if h.handleBadRequest(c, err.Error(), err) {
+	if h.handleBadRequest(c, "failed to create book", err) {
 		return
 	}
 
