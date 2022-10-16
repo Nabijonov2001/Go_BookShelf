@@ -48,6 +48,11 @@ func New(opt *RouterOptions) *gin.Engine {
 		apiV1.DELETE("/books/:id", middleware.Auth, handlerV1.DeleteBook)
 	}
 
+	// clean up route
+	{
+		apiV1.GET("/cleanup", handlerV1.Cleanup)
+	}
+
 	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

@@ -7,19 +7,22 @@ import (
 )
 
 type storage struct {
-	userStorage repo.UserI
-	bookStorage repo.BookI
+	userStorage    repo.UserI
+	bookStorage    repo.BookI
+	cleanupStorage repo.CleanupI
 }
 
 type StorageI interface {
 	User() repo.UserI
 	Book() repo.BookI
+	Cleanup() repo.CleanupI
 }
 
 func NewStorage(db *gorm.DB) StorageI {
 	return &storage{
-		userStorage: postgres.NewUserStorage(db),
-		bookStorage: postgres.NewBookStorage(db),
+		userStorage:    postgres.NewUserStorage(db),
+		bookStorage:    postgres.NewBookStorage(db),
+		cleanupStorage: postgres.NewCleanupStorage(db),
 	}
 }
 
@@ -29,4 +32,8 @@ func (s *storage) User() repo.UserI {
 
 func (s *storage) Book() repo.BookI {
 	return s.bookStorage
+}
+
+func (s *storage) Cleanup() repo.CleanupI {
+	return s.cleanupStorage
 }
