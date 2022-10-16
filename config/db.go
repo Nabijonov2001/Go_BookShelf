@@ -14,7 +14,7 @@ func ConnectDB() *gorm.DB {
 		log.Fatalf("Database connection error: %v", err)
 		panic(err)
 	}
-	
+
 	return db
 
 }
