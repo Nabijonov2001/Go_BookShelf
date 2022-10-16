@@ -35,8 +35,8 @@ func Auth(c *gin.Context) {
 	hash := helper.CreateHash(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + user.Secret)
 
 	if sign != hash {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-			"code":    "INTERNAL_SERVER_ERR",
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+			"code":    "UNAUTHORIZED",
 			"message": "access denied",
 		})
 		return
