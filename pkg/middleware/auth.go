@@ -14,7 +14,7 @@ func Auth(c *gin.Context) {
 
 	if len(c.Request.Header["Key"]) == 0 || len(c.Request.Header["Sign"]) == 0 {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"code":    "UNAUTHORIZED",
+			"code":    "INTERNAL_SERVER_ERR",
 			"message": "access denied",
 		})
 		return
@@ -27,7 +27,7 @@ func Auth(c *gin.Context) {
 	result := config.ConnectDB().Where("key=?", key).First(&user)
 	if result.Error != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"code":    "BAD_REQUEST",
+			"code":    "INTERNAL_SERVER_ERR",
 			"message": "access denied",
 		})
 		return
@@ -37,7 +37,7 @@ func Auth(c *gin.Context) {
 	fmt.Println(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + user.Secret)
 	if sign != hash {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
-			"code":    "UNAUTHORIZED",
+			"code":    "INTERNAL_SERVER_ERR",
 			"message": "access denied",
 		})
 		return
