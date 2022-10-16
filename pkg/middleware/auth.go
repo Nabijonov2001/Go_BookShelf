@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/abdukhashimov/golang-hex-architecture/config"
@@ -32,11 +31,9 @@ func Auth(c *gin.Context) {
 		})
 		return
 	}
-	
 
 	hash := helper.CreateHash(c.Request.Method + "http://localhost:3000" + c.Request.RequestURI + user.Secret)
-	fmt.Println(hash)
-	if sign == hash {
+	if sign != hash {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"code":    "UNAUTHORIZED",
 			"message": "access denied",
@@ -48,5 +45,3 @@ func Auth(c *gin.Context) {
 	c.Next()
 
 }
-
-
