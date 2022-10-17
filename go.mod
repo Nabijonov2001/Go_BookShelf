@@ -13,6 +13,11 @@ require (
 )
 
 require (
+	github.com/BurntSushi/toml v0.3.1 // indirect
+	github.com/Sirupsen/logrus v1.0.6 // indirect
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
+	github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d // indirect
+	github.com/fatih/color v1.7.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.13.0 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -24,6 +29,17 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
+	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
+	github.com/mattn/go-colorable v0.1.6 // indirect
+	github.com/mattn/go-runewidth v0.0.7 // indirect
+	github.com/olekukonko/tablewriter v0.0.4 // indirect
+	github.com/sevlyar/go-daemon v0.1.5 // indirect
+	github.com/sirupsen/logrus v1.8.1 // indirect
+	github.com/struCoder/pidusage v0.1.3 // indirect
+	github.com/struCoder/pmgo v0.6.1 // indirect
+	github.com/topfreegames/apm v0.0.1 // indirect
+	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
+	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
 	gorm.io/gorm v1.23.10 // indirect
 )
 

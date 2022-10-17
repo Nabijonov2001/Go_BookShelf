@@ -9,19 +9,6 @@ type BookData struct {
 	Published uint   `json:"published"`
 }
 
-type BookUpdateData struct {
-	Isbn      string `gorm:"unique" json:"isbn"`
-	Title     string `json:"title"`
-	Author    string `json:"author"`
-	Pages     uint   `json:"pages"`
-	Published uint   `json:"published"`
-}
-
-type BookAuthor struct {
-	Name string `json:"name"`
-	Key  string `json:"key"`
-}
-
 type Book struct {
 	Book   *BookData `gorm:"embedded" json:"book"`
 	Status uint      `sql:"type:ENUM(0, 1, 2)" gorm:"column:status" json:"status"`
@@ -31,9 +18,23 @@ type BookCreate struct {
 	Isbn string `json:"isbn" binding:"required"`
 }
 
+type BookUpdateData struct {
+	Isbn      string `gorm:"unique" json:"isbn"`
+	Title     string `json:"title"`
+	Author    string `json:"author"`
+	Pages     uint   `json:"pages"`
+	Published uint   `json:"published"`
+}
+
 type BookUpdate struct {
 	Book   *BookData `gorm:"embedded" json:"book"`
 	Status uint      `json:"status"`
+}
+
+// these are for getting data from OpenLibrary
+type BookAuthor struct {
+	Name string `json:"name"`
+	Key  string `json:"key"`
 }
 
 type BookResponse struct {

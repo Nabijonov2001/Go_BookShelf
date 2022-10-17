@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"bytes"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/abdukhashimov/golang-hex-architecture/config"
@@ -32,7 +34,13 @@ func Auth(c *gin.Context) {
 		return
 	}
 
-	hash := helper.CreateHash(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + user.Secret)
+	bodyByte, err := ioutil.ReadAll(c.Request.Body)
+	c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyByte))
+	if err != nil {
+		bodyByte = []byte("")
+	}
+
+	hash := helper.CreateHash(c.Request.Method + config.GetEnv("BASE_URL") + c.Request.RequestURI + string(bodyByte) + user.Secret)
 
 	if sign != hash {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{

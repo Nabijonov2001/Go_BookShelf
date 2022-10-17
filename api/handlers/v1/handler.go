@@ -34,6 +34,7 @@ func (h *handlerV1) handleInternal(c *gin.Context, msg string, err error) bool {
 		c.JSON(http.StatusInternalServerError, ResponseError{
 			Code:    "INTERNAL_SERVER_ERR",
 			Message: msg,
+			Error:   err.Error(),
 		})
 		return true
 	}
@@ -54,10 +55,11 @@ func (h *handlerV1) handleBadRequest(c *gin.Context, msg string, err error) bool
 type ResponseError struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
+	Error   string `json:"error"`
 }
 
 type ResponseCreated struct {
-	IsOk bool `json:"isOk"`
-	Message string `json:"message"`
-	Data interface{} `json:"data"`
+	IsOk    bool        `json:"isOk"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
